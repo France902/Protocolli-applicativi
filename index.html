@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="notte" data-font="lettura" data-side="aperta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protocolli del livello applicativo</title>
+  <meta name="description" content="Corso interattivo su HTTP, DNS, TLS, SMTP e POP3: i processi che portano una pagina web sullo schermo e un messaggio di posta al destinatario.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    /* applica subito le preferenze salvate, per evitare lo sfarfallio del tema */
+    try {
+      var p = JSON.parse(localStorage.getItem('dcs_pref') || '{}'), h = document.documentElement;
+      if (p.tema) h.setAttribute('data-theme', p.tema);
+      if (p.font) h.setAttribute('data-font', p.font);
+      if (p.sidebar) h.setAttribute('data-side', p.sidebar);
+      if (p.lingua) h.setAttribute('lang', p.lingua);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
+
+  <header class="topbar">
+    <button class="icon-btn" id="btn-menu" data-i18n-aria="top.menu" aria-controls="sidebar" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="brand" href="#/">
+      <img src="assets/logo.svg" alt="" width="28" height="28">
+      <span class="brand-txt"><b data-i18n="brand">Protocolli applicativi</b><small data-i18n="brand.sub">Sistemi e Reti</small></span>
+    </a>
+
+    <div class="top-tools">
+      <div class="seg" role="group" id="theme-picker" data-i18n-aria="tema.label">
+        <button data-theme-set="notte" aria-pressed="true"><span class="sw sw-notte" aria-hidden="true"></span><span class="seg-lbl" data-i18n="tema.notte">Notte</span></button>
+        <button data-theme-set="viola" aria-pressed="false"><span class="sw sw-viola" aria-hidden="true"></span><span class="seg-lbl" data-i18n="tema.viola">Viola</span></button>
+        <button data-theme-set="chiaro" aria-pressed="false"><span class="sw sw-chiaro" aria-hidden="true"></span><span class="seg-lbl" data-i18n="tema.chiaro">Chiaro</span></button>
+      </div>
+      <button class="font-switch" id="btn-font" role="switch" aria-checked="false">
+        <span class="fs-aa" aria-hidden="true">Aa</span>
+        <span class="fs-track" aria-hidden="true"><span class="fs-knob"></span></span>
+        <span class="fs-lbl" id="font-lbl">Lettura</span>
+      </button>
+      <button class="icon-btn progress-pill" id="btn-progress" data-i18n-aria="top.progress" aria-expanded="false" aria-controls="progress-pop">
+        <span id="pill-pct">0%</span>
+      </button>
+    </div>
+    <div class="progress-pop" id="progress-pop" hidden></div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar"></nav>
+    <div class="scrim" id="scrim" hidden></div>
+    <main id="contenuto" class="content" tabindex="-1"></main>
+  </div>
+
+  <!-- selettore della lingua, in basso a destra -->
+  <div class="lang">
+    <div class="lang-menu" id="lang-menu" role="menu" hidden></div>
+    <button class="lang-fab" id="btn-lang" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span id="lang-code">IT</span>
+    </button>
+  </div>
+
+  <!-- Traduzioni: una cartella per lingua -->
+  <script src="js/i18n.js"></script>
+  <script src="data/it/interfaccia.js"></script>
+  <script src="data/it/capitoli.js"></script>
+  <script src="data/it/domande.js"></script>
+  <script src="data/it/glossario.js"></script>
+  <script src="data/en/interfaccia.js"></script>
+  <script src="data/en/capitoli.js"></script>
+  <script src="data/en/domande.js"></script>
+  <script src="data/en/glossario.js"></script>
+  <script src="data/es/interfaccia.js"></script>
+  <script src="data/es/capitoli.js"></script>
+  <script src="data/es/domande.js"></script>
+  <script src="data/es/glossario.js"></script>
+  <script src="data/fr/interfaccia.js"></script>
+  <script src="data/fr/capitoli.js"></script>
+  <script src="data/fr/domande.js"></script>
+  <script src="data/fr/glossario.js"></script>
+  <script src="data/de/interfaccia.js"></script>
+  <script src="data/de/capitoli.js"></script>
+  <script src="data/de/domande.js"></script>
+  <script src="data/de/glossario.js"></script>
+  <!-- Logica -->
+  <script src="js/storage.js"></script>
+  <script src="js/dnd.js"></script>
+  <script src="js/esercitazioni/e1-clientserver.js"></script>
+  <script src="js/esercitazioni/e2-porte.js"></script>
+  <script src="js/esercitazioni/e3-header.js"></script>
+  <script src="js/esercitazioni/e4-email.js"></script>
+  <script src="js/extra.js"></script>
+  <script src="js/esame.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
